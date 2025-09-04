@@ -4,27 +4,25 @@ function App() {
   const [num, setNum] = useState("");
   const [result, setResult] = useState("");
 
-  const checkArmstrong = () => {
-    if (num === "") {
-      setResult("Please enter a number");
+  const calculateFactorial = () => {
+    if (num === "" || num < 0) {
+      setResult("Please enter a positive number");
       return;
     }
 
-    const n = parseInt(num);
-    const digits = num.split("").map(Number);
-    const power = digits.length;
-    const sum = digits.reduce((acc, d) => acc + Math.pow(d, power), 0);
+    let n = parseInt(num);
+    let fact = 1;
 
-    if (sum === n) {
-      setResult(`${n} is an Armstrong number `);
-    } else {
-      setResult(`${n} is NOT an Armstrong number `);
+    for (let i = 1; i <= n; i++) {
+      fact *= i;
     }
+
+    setResult(`Factorial of ${n} is ${fact}`);
   };
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px", fontFamily: "Arial" }}>
-      <h1>Armstrong Number Checker</h1>
+      <h1>Factorial Calculator</h1>
 
       <input
         type="number"
@@ -34,8 +32,8 @@ function App() {
         style={{ padding: "8px", marginRight: "10px" }}
       />
 
-      <button onClick={checkArmstrong} style={{ padding: "8px 12px" }}>
-        Check
+      <button onClick={calculateFactorial} style={{ padding: "8px 12px" }}>
+        Calculate
       </button>
 
       <div style={{ marginTop: "20px", fontSize: "18px", fontWeight: "bold" }}>
